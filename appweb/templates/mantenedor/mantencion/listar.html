@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block contenido %}
+{% load crispy_forms_tags %}
+
+<script>
+    function eliminarMantencion(cod)
+    {
+        alert(rut)
+        swal.fire({
+            "title": "Advertencia",
+            "text": "Estas seguro de eliminar mantencion?",
+            "icon": "question",
+            "showCancelButton": true,
+            "cancelButtonText": "No, cancelar",
+            "confirmButtonText": "Si, eliminar"
+        }).then(function(result){
+            if(result.isConfirmed)
+            {
+                window.location.href="/mantenedor/mantencion/eliminar/"+cod+"/";
+            }
+        })
+    }
+</script>
+
+<div class="container mt-5">
+    <div class="text-center">
+        <h3>Listar las mantenciones</h3>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">codigo</th>
+                <th scope="col">descripcion</th>
+                <th scope="col">nombre mecanico</th>
+            </tr>
+        </thead>
+        <tbody>
+                {% for p in mantencion %}
+            <tr>
+                <th scope="row">{{p.cod}}</th>
+                <td>{{p.descrip}}</td>
+                <td>{{p.mecani}}</td>
+                <td>
+                    {% if p.mantencion %}
+                        SI
+                    {% else %}
+                        NO
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{% url 'modificar_mantencion' p.cod %}" class="btn btn-danger btm-sm">Modificar</a>
+
+                    <a href="#" onclick="eliminar_mantencion('{{p.cod}}')" class="btn btn-info btm-sm">Eliminar</a>
+                </td>
+            </tr>
+                {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

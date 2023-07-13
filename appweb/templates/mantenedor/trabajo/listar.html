@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block contenido %}
+{% load crispy_forms_tags %}
+
+
+<div class="container mt-5">
+    <div class="text-center">
+        <h3>Listar los Postulantes</h3>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                
+                <th scope="col">rut</th>
+                <th scope="col">nombre</th>
+                <th scope="col">apellido</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+                {% for p in trabajo %}
+            <tr>
+                <th scope="row">{{p.rut}}</th>
+                <td>{{p.nombre}}</td>
+                <td>{{p.apellido}}</td>
+                <td>
+                    {% if p.trabajo %}
+                        SI
+                    {% else %}
+                        NO
+                    {% endif %}
+                </td>
+            </tr>
+                {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

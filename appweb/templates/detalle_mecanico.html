@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contenido %}
+
+<div class="container" style="margin-top: 50px">
+
+  <div id="profesionales_excelencia" class="row">
+    <div class="cont-profesionales col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <h3>{{p.nombre}}</h3>
+      <div class="cont-listado row">
+
+
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+          <div class="prof int">
+            <figure>
+              <a href="{% url 'detalle_mecanico' p.pk %}">
+
+              {% if p.foto %}
+                <img width="270" height="350" src="{{ p.foto.url }}" class="img-responsive wp-post-image" alt=""
+                  decoding="async" loading="lazy"> </a>
+              {% else %}
+              <img width="270" height="350" src="" class="img-responsive wp-post-image" alt="" decoding="async"
+                loading="lazy"> </a>
+              {% endif %}
+
+              <h4 class="nombre Black">{{p.rut}}</h4>
+              <span class="cargo">
+                <br>Nombre: {{ p.nombre }} {{p.apellido }}</br> 
+                <br>Edad: {{p.edad }}</br>
+                <br>Especialidad: {{p.categoria }}</br>
+                <br>Fecha Nacimiento: {{p.fecha_nacimiento }}</br></span>
+
+
+            </figure>
+            <div class="details">
+              <p class="extracto">{{p.cargo}}</p>
+              <p class="rrss"></p>
+            </div>
+          </div>
+        </div>
+
+     
+
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+
+
+  {% endblock %}

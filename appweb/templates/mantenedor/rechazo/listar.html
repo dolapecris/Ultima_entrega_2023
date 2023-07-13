@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block contenido %}
+{% load crispy_forms_tags %}
+
+<script>
+    function eliminarRechazo(codigo)
+    {
+        swal.fire({
+            "title": "Advertencia",
+            "text": "Estas seguro de eliminar rechazo?",
+            "icon": "question",
+            "showCancelButton": true,
+            "cancelButtonText": "No, cancelar",
+            "confirmButtonText": "Si, eliminar"
+        }).then(function(result){
+            if(result.isConfirmed)
+            {
+                window.location.href="/mantenedor/rechazo/eliminar/"+codigo+"/";
+            }
+        })
+    }
+</script>
+
+<div class="container mt-5">
+    <div class="text-center">
+        <h3>Listar los rechazos</h3>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">codigo</th>
+                <th scope="col">tipo rechazo</th>
+                <th scope="col">Mecanico</th>
+                <th scope="col">Mensaje</th>
+            </tr>
+        </thead>
+        <tbody>
+                {% for p in rechazo %}
+            <tr>
+                <th scope="row">{{p.codigo}}</th>
+                <td>{{p.tipo_rechazo}}</td>
+                <td>{{p.mensaje}}</td>
+                <td>
+                    {% if p.rechazo %}
+                        SI
+                    {% else %}
+                        NO
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{% url 'modificar_rechazo' p.codigo %}" class="btn btn-danger btm-sm">Modificar</a>
+
+                    <a href="#" onclick="eliminarRechazo('{{p.codigo}}')" class="btn btn-info btm-sm">Eliminar</a>
+                </td>
+            </tr>
+                {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

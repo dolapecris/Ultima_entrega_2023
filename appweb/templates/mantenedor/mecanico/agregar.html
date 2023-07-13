@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% load contenido %}
+
+{% load crispy_forms_tags %}
+
+<div class="container mt-5">
+    <div class="text-center">
+        <h3>Agregar un Mecanico</h3>
+    </div>
+    <h2 class="mt-4">Contacto</h2>
+    <form id="formAddProf" action="" method="post" enctype="multipart/Form-data">
+        
+        {% crsf_token %}
+
+        {{form | crispy}}
+
+        <input type="reset" value="Cancelar" class="btn btn-danger">
+        <button type="submit" class="btn btnsucess">Agregar</button>
+        <button tyoe="reset" class="btn btn_primary">Limpiar</button>
+    </form>
+    {{mensaje}}
+</div>
+{% endblock %}

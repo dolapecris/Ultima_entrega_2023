@@ -1,0 +1,32 @@
+from django.urls import path
+from .views import *
+
+urlpatterns = [
+    path('home/', home, name="home"),
+    path ('', home, name="home"),
+    path('mecanico/', mecanico, name="mecanico"),
+    path('contacto/', contacto, name="contacto"),
+    path('mantenedor/mecanico/agregar', agregar_mecanico, name="agregar_mecanico"),
+    path('mantenedor/mecanico/listar', listar_mecanico, name="listar_mecanico"),
+    path('mantenedor/mecanico/modificar/<rut>', modificar_mecanico, name="modificar_mecanico"),
+    path('mantenedor/mecanico/eliminar/<rut>', eliminar_mecanico, name="eliminar_mecanico"),
+    path('login_usuario/', login_usuario, name="login_usuario"),
+    path('registro/', registro, name="registro"),
+    path('mantencion/', mantencion, name="mantencion"),
+    path('mantenedor/mantencion/agregar', agregar_mantencion, name="agregar_mantencion"),
+    path('mantenedor/mantencion/listar', listar_mantencion, name="listar_mantencion"),
+    path('mantenedor/mantencion/modificar/<cod>', modificar_mantencion, name="modificar_mantencion"),
+    path('mantenedor/mantencion/eliminar/<cod>', eliminar_mantencion, name="eliminar_mantencion"),
+    path('rechazo/', rechazo, name="rechazo"),
+    path('mantenedor/rechazo/agregar', agregar_rechazo, name="agregar_rechazo"),
+    path('mantenedor/rechazo/listar', listar_rechazo, name="listar_rechazo"),
+    path('mantenedor/rechazo/modificar/<codigo>', modificar_rechazo, name="modificar_rechazo"),
+    path('mantenedor/rechazo/eliminar/<codigo>', eliminar_rechazo, name="eliminar_rechazo"),
+    path('trabajo/', trabajo, name="trabajo"),
+    path('detalle_mecanico/<pk>/', detalle_mecanico, name="detalle_mecanico"),
+    path('detalle_mantencion/<pk>/', detalle_mantencion, name="detalle_mantencion"),
+    path('detalle_trabajo/<pk>/', detalle_trabajo, name="detalle_trabajo"),
+    path('mantenedor/trabajo/listar/<rut>/', listar_trabajo, name="listar_trabajo"),
+    path('mantenciones_filtradas/<pk>', mantenciones_filtradas, name="mantenciones_filtradas"),
+    path('mecanico_filtrados/<pk>', mecanico_filtrados, name="mecanico_filtrados"),
+]   

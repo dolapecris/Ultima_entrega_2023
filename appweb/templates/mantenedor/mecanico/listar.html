@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block contenido %}
+{% load crispy_forms_tags %}
+
+<script>
+    function eliminarMecanico(rut)
+    {
+        swal.fire({
+            "title": "Advertencia",
+            "text": "Estas seguro de eliminar mecanico?",
+            "icon": "question",
+            "showCancelButton": true,
+            "cancelButtonText": "No, cancelar",
+            "confirmButtonText": "Si, eliminar"
+        }).then(function(result){
+            if(result.isConfirmed)
+            {
+                window.location.href="/mantenedor/mecanico/eliminar/"+rut+"/";
+            }
+        })
+    }
+</script>
+
+<div class="container mt-5">
+    <div class="text-center">
+        <h3>Listar los mecanicos</h3>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Rut</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">¿Es Especialista?</th>
+                <th scope="col">Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+                {% for p in mecanico %}
+            <tr>
+                <th scope="row">{{p.rut}}</th>
+                <td>{{p.nombre}}</td>
+                <td>{{p.apellido}}</td>
+                <td>
+                    {% if p.mecanico %}
+                        SI
+                    {% else %}
+                        NO
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{% url 'modificar_mecanico' p.rut %}" class="btn btn-danger btm-sm">Modificar</a>
+
+                    <a href="#" onclick="eliminarMecanico ('{{p.rut}}')" class="btn btn-info btm-sm">Eliminar</a>
+                </td>
+            </tr>
+                {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
